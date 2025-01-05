@@ -5,20 +5,20 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/polling/polling-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/p/polling/polling-{{ version }}.tar.gz
   sha256: 3afd62320c99b725c70f379964bf548b302fc7f04d4604e6c315d9012309cc9a
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python >=2.7
+    - python {{ python_min }}
   run:
-    - python >=2.7
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -27,6 +27,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: http://github.com/justiniso/polling
